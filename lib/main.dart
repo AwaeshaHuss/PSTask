@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
     ]);
     return blocProviders(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'PS_Task',
         theme: AppTheme.lightMode,
         home: SplashScreen(),
