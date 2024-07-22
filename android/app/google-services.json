@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813158882609",
+    "project_id": "pstask-957bb",
+    "storage_bucket": "pstask-957bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813158882609:android:e4999ad393ad65facaa410",
+        "android_client_info": {
+          "package_name": "com.task.ps_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4SrxluHoQqYhI7fIAVlPjB3e-sbRmI9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
