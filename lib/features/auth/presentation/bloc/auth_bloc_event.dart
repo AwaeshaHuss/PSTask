@@ -8,13 +8,15 @@ sealed class AuthBlocEvent extends Equatable {
 }
 
 class LoginEvent extends AuthBlocEvent {
+  final BuildContext context;
   String mobile;
   String password;
 
-  LoginEvent(this.mobile, this.password);
+  LoginEvent(this.mobile, this.password, this.context);
 }
 
 class RegisterEvent extends AuthBlocEvent {
+  final BuildContext context;
   String email;
   String password;
   String phoneNumber;
@@ -24,25 +26,33 @@ class RegisterEvent extends AuthBlocEvent {
   String mobileRegx;
   String passwordRegx;
 
-  RegisterEvent({required this.age, required this.email, required this.fullName, required this.gender,
+  RegisterEvent(this.context, {required this.age, required this.email, required this.fullName, required this.gender,
    required this.phoneNumber, required this.password, required this.mobileRegx, required this.passwordRegx});
 }
 
 class LogoutEvent extends AuthBlocEvent{
+  final BuildContext context;
 
+  const LogoutEvent(this.context);
 }
 
 class SendOTPEvent extends AuthBlocEvent{
+  final BuildContext context;
   String phoneNumber;
 
-  SendOTPEvent(this.phoneNumber);
+  SendOTPEvent(this.phoneNumber, this.context);
 }
 
 class verifyOTPEvent extends AuthBlocEvent{
+  final BuildContext context;
   String verificationId;
   String otpCode;
 
-  verifyOTPEvent({required this.otpCode, required this.verificationId});
+  verifyOTPEvent(this.context, {required this.otpCode, required this.verificationId});
 }
 
-class LoadUserDataEvent extends AuthBlocEvent{}
+class LoadUserDataEvent extends AuthBlocEvent{
+  final BuildContext context;
+
+  const LoadUserDataEvent(this.context);
+}

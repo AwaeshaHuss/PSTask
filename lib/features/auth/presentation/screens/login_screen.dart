@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ps_task/core/theme/app_colors.dart';
 import 'package:ps_task/core/theme/app_fonts.dart';
 import 'package:ps_task/core/theme/app_icons.dart';
+import 'package:ps_task/features/auth/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:ps_task/features/home/presentation/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'register_screen.dart';
@@ -24,7 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String passwordRegex = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$';  // Sample regex for password
 
   Future<void> _login() async {
-    if (_formKey.currentState!.validate()) {
+    AuthBlocBloc.get(context).add(LoginEvent(_mobileController.text, _passwordController.text, context));
+    /*if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
@@ -61,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
         _showErrorDialog('Error: ${e.toString()}');
       }
-    }
+    }*/
   }
 
   void _showRegisterDialog() {

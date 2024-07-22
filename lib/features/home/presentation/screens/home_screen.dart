@@ -1,11 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:ps_task/core/theme/app_colors.dart';
 import 'package:ps_task/core/theme/app_fonts.dart';
+import 'package:ps_task/features/auth/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:ps_task/features/auth/presentation/screens/login_screen.dart';
 import 'package:ps_task/features/home/data/models/post_model.dart';
 import 'dart:convert';
+
+import 'package:ps_task/features/home/presentation/bloc/post_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,7 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _fetchPosts() async {
-    try {
+    PostsBloc.get(context).add(GetAllPostsEvent(context));
+    /*
+
+try {
       final response = await http.get(Uri.parse("YOUR_API_ENDPOINT_HERE"));
       if (response.statusCode == 200) {
         final List decodedJson = json.decode(response.body) as List;
@@ -44,11 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
         throw Exception('Failed to load posts');
       }
     } catch (e) {
-      print(e);
+      log(e.toString());
       setState(() {
         _isLoading = false;
       });
     }
+
+    */
   }
 
   void _filterPosts() {
@@ -67,12 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _logout() async {
-    await FirebaseAuth.instance.signOut();
-    mounted?Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    ):null;
+  void _logout() {
+    AuthBlocBloc.get(context).add(LogoutEvent(context));
   }
 
   @override

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ps_task/core/theme/app_colors.dart';
 import 'package:ps_task/core/theme/app_fonts.dart';
 import 'package:ps_task/core/theme/app_icons.dart';
+import 'package:ps_task/features/auth/presentation/bloc/auth_bloc_bloc.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -30,7 +31,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$'; // Sample regex for password
 
   Future<void> _register() async {
-    if (_formKey.currentState!.validate()) {
+    AuthBlocBloc.get(context).add(RegisterEvent(context, age: int.parse(_ageController.text), email: _mobileController.text, fullName: _fullNameController.text, gender: _selectedGender, phoneNumber: _mobileController.text, password: _passwordController.text, mobileRegx: mobileRegex, passwordRegx: passwordRegex));
+   /* if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
@@ -82,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
         _showErrorDialog('Error: ${e.toString()}');
       }
-    }
+    }*/
   }
 
   void _showErrorDialog(String message) {

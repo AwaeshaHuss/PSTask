@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ps_task/core/theme/app_colors.dart';
 import 'package:ps_task/core/theme/app_fonts.dart';
 import 'package:ps_task/core/theme/app_icons.dart';
+import 'package:ps_task/features/auth/presentation/bloc/auth_bloc_bloc.dart';
 import 'register_screen.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -19,7 +20,8 @@ class _OTPScreenState extends State<OTPScreen> {
   bool _isLoading = false;
 
   Future<void> _verifyOTP() async {
-    setState(() {
+    AuthBlocBloc.get(context).add(verifyOTPEvent(context, otpCode: _otpController.text, verificationId: widget.verificationId));
+    /*setState(() {
       _isLoading = true;
     });
 
@@ -52,7 +54,7 @@ class _OTPScreenState extends State<OTPScreen> {
         _isLoading = false;
       });
       _showErrorDialog('Error: ${e.toString()}');
-    }
+    }*/
   }
 
   void _showErrorDialog(String message) {

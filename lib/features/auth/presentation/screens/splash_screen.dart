@@ -23,12 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _loadConfigAndNavigate() async {
     await Future.delayed(const Duration(seconds: 2));
 
-    try {
-      DocumentSnapshot config = await FirebaseFirestore.instance.collection('config').doc('system').get();
-      log('Config data: ${config.data()}');
-    } catch (e) {
-      log('Error loading config: $e');
-    }
+    // try {
+    //   DocumentSnapshot config = await FirebaseFirestore.instance.collection('config').doc('system').get();
+    //   log('Config data: ${config.data()}');
+    // } catch (e) {
+    //   log('Error loading config: $e');
+    // }
     mounted ?Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => LoginScreen()),
     ):null;
